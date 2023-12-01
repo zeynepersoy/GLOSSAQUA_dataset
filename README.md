@@ -1,18 +1,19 @@
 # SizeAcross_dataset <img src="graphs/logo_across.png" align="right" height="220" width="210" ></a>
 
 This is the GitHub repository for the "SizeAcross dataset: a global dataset of size spectra across aquatic ecosystems and trophic levels"", which was generated in the ACROSS project, funded by "Advanced early career researchers project grant (Advanced ECR)"
-in the Second call of SIBECOL (Iberian Society of Ecology) Projects for Early Career Researchers.
+in the Second call of SIBECOL ([Iberian Society of Ecology](https://www.sibecol.org/en/)) Projects for Early Career Researchers.
 
 
 ## About the project and contact information
 
-Check the [project's page](https://sibecol-across.com/) for more information, and recent news.
-
+If you want to know more about the project, please check the [project's webpage](https://sibecol-across.com/).
 
 Project Co-PIs: 
 
 <a href="https://www.ignasiarranz.com/" target="_blank">Ignasi Arranz</a> (University of Rey Juan Carlos, Spain)
+
 <a href="https://charlotteevangelista.weebly.com/" target="_blank">Charlotte Evangelista</a> (University of Vic, Spain)
+
 <a href="https://zeynepersoy.com/" target="_blank">Zeynep Ersoy</a> (University of Barcelona, Spain)
 
 
@@ -23,7 +24,7 @@ This repository has the data, graphs and the code to reproduce the figures in th
 
 ## Data structure
 
-We (IA, CE and ZE) compiled a comprehensive collection of size spectrum parameters (i.e. slope, intercept and linearity) across ecosystems and trophic levels. Data were acquired from two different sources: a classic literature review and an online survey. 
+We compiled a comprehensive collection of size spectrum parameters (i.e. slope, intercept and linearity) across ecosystems and trophic levels. Data were acquired from two different sources: a classic literature review and an online survey. 
 
 To be included in the SizeAcross dataset, all articles had to meet the following criteria: (1) field-based studies and hence experimental or theoretical works were excluded; (2) studies involving animal communities and hence primary producers were excluded unless they were part of a food web (e.g., phytoplankton-zooplankton-fish); and (3) studies based on individual body size measurements without relying on mean or maximum body size per species.
 
