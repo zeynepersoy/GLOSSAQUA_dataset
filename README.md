@@ -19,7 +19,7 @@ Project Co-PIs:
 <a href="https://zeynepersoy.com/" target="_blank">Zeynep Ersoy</a> (University of Barcelona, Spain)
 
 
-## Repository Structure
+## Repository structure
 
 This repository has the data, graphs and the code to reproduce the figures in the data article called "SizeAcross dataset: a global dataset of size spectra across aquatic ecosystems and trophic levels".
 
