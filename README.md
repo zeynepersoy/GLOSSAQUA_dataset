@@ -1,6 +1,6 @@
 # SizeAcross_dataset <img src="graphs/logo_across.png" align="right" height="220" width="210" ></a>
 
-This is the GitHub repository for the "SizeAcross dataset: a global dataset of size spectra across aquatic ecosystems and trophic levels"", which was generated in the ACROSS project, funded by "Advanced early career researchers project grant (Advanced ECR)"
+This is the GitHub repository for the "SizeAcross dataset: a global dataset of size spectra across aquatic ecosystems and trophic levels", which was generated in the ACROSS project, funded by "Advanced early career researchers project grant (Advanced ECR)"
 in the Second call of SIBECOL ([Iberian Society of Ecology](https://www.sibecol.org/en/)) Projects for Early Career Researchers.
 
 Dataset last updated: 01.12.2023
