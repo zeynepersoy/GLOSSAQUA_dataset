@@ -150,12 +150,15 @@ Map.Across <- ggplot() +
   guides(colour = guide_legend(override.aes = list(size = 4))) 
 
 ### Merge panels together
+png(file="./graphs/Fig1.png", width = 10, height = 10, units = 'in', res= 300)
 ggdraw() +
   draw_plot(Map.Across, x = 0, y = 0.5, width = 1, height = 0.5) +
   draw_plot(Publication.Year, x = 0, y = 0.08, width = .5, height = .4) +
   draw_plot(Taxonomic.Group, x = .5, y = 0.0, width = .5, height = .48) +
   draw_plot_label(label = c("(A)", "(B)", "(C)"), size = 15,
                   x = c(0, 0, 0.5), y = c(1, 0.5, 0.5))
+
+dev.off()
 
 ################################################################################################################
 #
@@ -187,6 +190,10 @@ SizeSpectrum.Methods <- ggplot(Size_Sample.Aquatic, aes(x = fct_infreq(SizeSpect
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
+
+png(file="./graphs/Fig3.png", width = 5, height = 5, units = 'in', res= 300)
+SizeSpectrum.Methods
+dev.off()
 
 
 ################################################################################################################
@@ -239,5 +246,11 @@ Linearity <- ggplot(Size_Sample.Aquatic, aes(x = fct_infreq(SizeSpectrumMethod),
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
+
+png(file="./graphs/Fig4.png", width = 12, height = 6, units = 'in', res= 300)
+
+plot_grid(Slope, Intercept, Linearity, labels = "AUTO", ncol=3, label_size = 12)
+
+dev.off()
 
 #### END OF THE CODE
