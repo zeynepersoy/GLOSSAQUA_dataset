@@ -9,7 +9,8 @@ library(scico)
 library(ggplot2)
 library(cowplot)
 library(forcats)         
-library(gghalves)         
+library(gghalves)
+library(ghibli)
 
 ## Load the data
 Source <- read.table('data/SizeAcross_DataSource.txt')
@@ -126,7 +127,6 @@ Aquatic_map <- merge(x = Aquatic_map, y = coord.A, by = "GeographicalTerritory2"
 ## Load the map
 world_map <- map_data("world")
 ## Color palettes
-library(ghibli)
 PonyoMedium.2 <- ghibli_palette("PonyoMedium", 8, type = "continuous")
 ## Create breaks for the color scale
 mybreaks <- c(1, 4, 8, 12, 16)
