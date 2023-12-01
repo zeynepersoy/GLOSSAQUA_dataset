@@ -1,0 +1,143 @@
+---
+title: "Data_Paper_Figures"
+output: html_document
+date: "2023-07-25"
+---
+dd
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+# Before starting
+For calculations and visualizations, we need to install specific packages and load the libraries. Be sure that you have them correctly loaded before starting.
+```{r packages}
+library(ggspatial)#to run the function annotation_scale
+library(ggplot2)
+library(ggExtra)#to run the function ggMarginal
+library(sf)#to run the function st_as_sf
+library(maps)
+library(magrittr)
+library(raster)
+library(ggalluvial)# to run the alluvial plot
+library(ggrepel)# to run the alluvial plot
+
+```
+
+
+# Set the working directory
+Here, you need to make sure to set your working directory and place your data in the same folder as the RMarkdown file.
+```{r}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+```
+
+# Load the data
+```{r}
+SizeAcross_DataSource <- read.table('SizeAcross_DataSource.csv',sep = ";",dec=",",fill = T,header = T,stringsAsFactors=FALSE)
+SizeAcross_Sample <- read.table('SizeAcross_Sample.csv',sep = ";",dec=",",fill = T,header = T,stringsAsFactors=FALSE)
+SizeAcross_Size <- read.table('SizeAcross_Size.csv',sep = ";",dec=".",fill = T,header = T,stringsAsFactors=FALSE)
+```
+
+
+# Set the plot parameters and the directory you want to save the file
+```{r}
+par(mar=c(8,4,4,4),mfrow=c(1,1),pty="s")#sets the bottom, left, top and right margins
+
+pdf(file = "/Users/zeynep/Desktop/GitHub/ACROSS/data_paper/figures",   # The directory you want to save the file in
+    paper="a4",width=18.27,height=21.69)#"a4r" for rotated (landscape)
+```
+
+# Figure 2. 
+
+```{r}
+
+# Figure2A. Map. BUBBLE MAP??
+
+mycrs <- "+proj=longlat +datum=WGS84 +no_defs"
+world <- maps::map("world", fill=TRUE) %$% 
+  maptools::map2SpatialPolygons(., IDs=names,proj4string=CRS(mycrs))
+
+while(rgeos::gIsValid(world)==FALSE){
+  world <- rgeos::gBuffer(world, byid = TRUE, width = 0, quadsegs = 5, capStyle = "ROUND")
+}
+world <- raster::aggregate(world)
+
+DF <- data.frame(long = SizeAcross_Sample$GeographicalLongitude,lat = SizeAcross_Sample$GeographicalLatitude) %>% st_as_sf(coords =c(1,2),crs= "+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs")
+
+SizeAcross_Sample$GeographicalLatitude <- as.numeric(SizeAcross_Sample$GeographicalLatitude)
+SizeAcross_Sample$GeographicalLongitude <- as.numeric(SizeAcross_Sample$GeographicalLongitude)
+
+ggplot() + 
+  geom_polygon(data = world,
+               aes(long, lat, group=group),fill="#F5F5F5",color="black",size=0.2) +
+  geom_sf(data=DF,size = 1, shape = 21,fill="orange") +
+  geom_point(data = SizeAcross_Sample, aes(x = GeographicalLongitude, y = GeographicalLatitude),col="black",size = 2, shape = 
+  21,fill="orange") + 
+  annotation_scale() + 
+  annotation_north_arrow(location = "bl", which_north = "true", pad_x = unit(1.25, "in"), pad_y = unit(0.5, "in"),style = north_arrow_fancy_orienteering) +
+  xlab("Longitude") + ylab("Latitude") +
+  coord_sf(expand = FALSE) +
+  theme_classic()+
+  theme(panel.grid.major = element_line(color = gray(.5), linetype = "dashed", size = 0.25),
+        panel.background = element_rect(fill = "white"),
+        legend.position = "none",
+        text = element_text(size=20))
+
+#Figure 2B. Studies over time
+
+barplot(table(SizeAcross_DataSource$PublicationYear),xlab="Number of times sampled",cex.axis=1.75,cex.lab=2,main="")
+
+dev.off()
+```
+
+```{r}
+#Figure 3 Alluvial plot
+
+AP1 <- read_excel("Merged attribute_FINAL.xlsx", sheet = "AP1")
+AP1$Hemisphere <- as.factor(AP1$Hemisphere); AP1$Continent <- as.factor(AP1$Continent); AP1$Ecosystem <- as.factor(AP1$Ecosystem);
+AP1$Habitat <- as.factor(AP1$Habitat); AP1$Organisation <- as.factor(AP1$Organisation); AP1$Species <- as.factor(AP1$Species);
+summary(AP1)
+
+
+ggplot(as.data.frame(AP1),
+       aes(y = Nbr_DOI, axis1 = Hemisphere, axis3 = Continent, axis4 = Habitat, axis5 = Organisation)) +
+  scale_x_discrete(limits = c("Hemishpere", "Continent", "Habitat", "Organisation"), expand = c(0.1, 0.5)) +
+  geom_alluvium(aes(fill = Ecosystem)) +
+  #scale_fill_manual(values = c("#AE93BEFF", "#0E84B4FF")) +
+  geom_stratum(alpha = 1, fill = "grey70",) +
+  geom_text_repel(stat = "stratum", aes(label = after_stat(stratum)), direction = "y", 
+                  size = 3, segment.color = 'black', 
+                  nudge_x = rep(c(-0.1,-0.1, 
+                                  0,0,-0.3,-0.3,-0.3,0,0,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,
+                                  -0.3,-0.1,-0.1,-0.1,-0.4,-0.1,
+                                  -0.13,-0.2),1),
+                  
+                  hjust = rep(c(0,0, 
+                                0.5,0.5,0.5,1,1,1,0.5,0.7,0.7,0.7,0.8,0.8,
+                                0,0,0,0,0,0,
+                                -0.1,0),1)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.title.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10),
+        axis.title.y = element_text(color = "black", size = 10),
+        legend.position = "none")
+
+```
+
+#Figure 4 Methods
+```{r}
+names <- c("NASS","MLE","NBSS","ASS","Pareto","BSS")
+par(mar=c(4,6,4,4),mfrow=c(1,1),pty="s")#sets the bottom, left, top and right margins
+barplot(sort(table(SizeAcross_Size$SizeSpectrumMethod),d=T),
+        ylim=c(0,3000),
+        ylab="Occurrences",
+        cex.axis=1.10,
+        cex.lab=1.1,
+        names.arg=names,
+        cex.names=1.7,
+        cex.lab=1.5)
+```
+
+
+```{r}
