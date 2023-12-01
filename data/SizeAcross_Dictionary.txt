@@ -1,0 +1,49 @@
+VariableName	Units	ExcelSpreedsheet	Description	Example
+SourceID	String	"SizeAcross_DataSource; SizeAcross_Sample; SizeAcross_Size"	Unique identifier of the data source	SourceID_1
+Reference	String	SizeAcross_DataSource	Citation of the source	Evans et al. 2022
+Journal	String	SizeAcross_DataSource	Names of the journal when data has already been puiblised. Otherwise, add NA	CORAL REEFS
+PublicationYear	Numeric	SizeAcross_DataSource	Year of publication	2017
+DOI	String	SizeAcross_DataSource	Digital Object Identifier (DOI) when data has already been published. Otherwise, add NA	10.1002/lno.11613
+SiteID	String	"SizeAcross_Sample; SizeAcross_Size"	Unique identifier of the local site	SiteID_1
+GeographicalLatitude	Numeric	SizeAcross_Sample	Longitude of the sampling site in decimal degress	54.617
+GeographicalLongitude	Numeric	SizeAcross_Sample	Latitude of the sampling site in decimal degress	-113.618
+Hemisphere	String	SizeAcross_Sample	North or South depending on the geographical location of the site	North
+Realms	String	SizeAcross_Sample	Name of the biogepgraphic realms	Palearctic
+GeographicalTerritory	String	SizeAcross_Sample	General name of the type of geographical zone	Europe
+GeographicalTerritory2	String	SizeAcross_Sample	Specific name of the geographical zone	Iceland
+Ecosystem	String	SizeAcross_Sample	"Type of ecosystem: ""Marine"", ""Freshwater"", ""Terrestrial"" or ""Brackish"""	Freshwater
+EcosystemSpecification	String	SizeAcross_Sample	"Type of ecosystem: ""Lentic"", ""Lotic"", ""Marine"" or ""Brackish"""	Lentic
+Habitat	String	SizeAcross_Sample	Information of the habitat when it is available	Shallow water
+EnvironmentalContext	String	SizeAcross_Sample	Information of the environmental context of the study when it is available	Fisheries
+BiologicalOrganisation	String	SizeAcross_Sample	Community (e.g. only fish) or Food web (e.g. invertebrate and fish)	Community
+SpeciesType	String	SizeAcross_Sample	Name of the taxonomic group studied (e.g. Fungi, Bacteria, Primary producer, Protozoan, Macroinvertebrate, Zooplankton, Fish larvae, Fish...)	Macroinvertebrate
+SamplingMethodology	String	SizeAcross_Sample	General method used to collect data (e.g. electrofishing, accoustic, plankton net, Seine net, Ekman dredge, etc...), as well as any additional information of the gear sampling	"Ekman dredge (15_15_23cm; 500µm screen on top) from littoral zone"
+Observations	String	SizeAcross_Sample	Any additional information that should help the users to better understand the data	Fig.5. Average normalized size spectra
+SampleID	String	SizeAcross_Size	Unique identifier of the size spectrum	SampleID_1
+NumSampled	Numeric	SizeAcross_Size	Number of times sampled each site	1
+SamplingYear	Numeric	SizeAcross_Sample	Year when data was collected	1986
+SamplingMonth	String	SizeAcross_Sample	Month when data was collected. Sometimes multiple months were considered to build the size spectra	May-Jun-Jul-Aug-Sep
+SamplingSeason	String	SizeAcross_Sample	Season when data were collected.	Spring_Summer
+NumberSizeSpectrumMethods	Numeric	SizeAcross_Size	Number of size spectrum methods used to fit the data	1
+SizeSpectrumMethod	String	SizeAcross_Size	Type of size spectrum methodology used to fit the data	Biomass spectrum (linear)
+YaxisParameterType	String	SizeAcross_Size	Type of variable  in the Y-axis (i.e., abundance, biomass, biomass concentration, density )	density
+YaxisParameterTypeSpecification	String	SizeAcross_Size	Addittional information of the Y-axis regarding if the information is carbon or not	density
+XaxisParameterType	String	SizeAcross_Size	Type of body size used (body length or body mass)	body mass
+XaxisParameterTypeSpecification	String	SizeAcross_Size	Addittional information of the X-axis regarding if the information is carbon or not or biovolume	body mass
+YaxisParameterUnit	String	SizeAcross_Size	Unit used in the Y-axis	g/m2
+XaxisParameterUnit	String	SizeAcross_Size	Unit used in the X-axis	g
+XaxisParameterUnitSpecification	String	SizeAcross_Size	Addittional information of the unit of the X-axis 	g
+NumberSizeClasses	Numeric	SizeAcross_Size	Number of size classes used to fit the size spectrum model	52
+SizeRangeMinimum	Numeric	SizeAcross_Size	Miniumum size used in the first size class	0.031
+SizeRangeMaximum	Numeric	SizeAcross_Size	Maximum size used in the last size class	31.62
+Slope	Numeric	SizeAcross_Size	Value of the size spectrum slope parameter	-0.42
+SlopeConfIntLow	Numeric	SizeAcross_Size	Value of the lower limit of the confident interval of the slope	-0.57
+SlopeConfIntUp	Numeric	SizeAcross_Size	Value of the lower upper of the confident interval of the slope	-0.27
+SlopeSD	Numeric	SizeAcross_Size	Value of the standard deviation of the slope	0.15
+SlopeSE	Numeric	SizeAcross_Size	Value of the standard error of the slope	0.11
+Intercept	Numeric	SizeAcross_Size	Value of the size spectrum intercept parameter	-1.99
+InterceptConfIntLow	Numeric	SizeAcross_Size	Value of the lower limit of the confident interval of the intercept	-2.11
+InterceptConfIntUp	Numeric	SizeAcross_Size	Value of the lower upper of the confident interval of the intercept	-1.87
+InterceptSD	Numeric	SizeAcross_Size	Value of the standard deviation of the intercept	0.12
+InterceptSE	Numeric	SizeAcross_Size	Value of the standard error of the intercept	0.25
+Linearity	Numeric	SizeAcross_Size	Value of the size spectrum linearity parameter	0.139
