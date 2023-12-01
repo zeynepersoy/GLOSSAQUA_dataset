@@ -18,11 +18,12 @@ Sample <- read.table('data/SizeAcross_Sample.txt')
 Size <- read.table('data/SizeAcross_Size.txt')
 
 ## Merge "Size" and "Sample" datasets together
-Size_Sample <- left_join(Sample, Size, by = c("SourceID","SiteID"))
-nrow(Size_Sample)
-
+## Convert negative Longitude values for Fiji into absolute values (to draw the map)
+Size_Sample.map <- left_join(Sample, Size, by = c("SourceID","SiteID")) %>% 
+  mutate(across(GeographicalLongitude, ~ifelse(GeographicalTerritory2=='Fiji', abs(.x), .x)))
+nrow(Size_Sample.map)
 ## Save the new dataset
-write.csv(Size_Sample , "data/Data_Size Across_flow_diagram.csv", row.names = TRUE)
+write.csv(Size_Sample.map, "data/Data_Size Across_map.csv", row.names = TRUE)
 
 ################################################################################################################
 #
@@ -94,7 +95,7 @@ Taxonomic.Group <- ggplot(Source_Sample.Aquatic, aes(x = SpeciesType, fill = Eco
         legend.position = "none")
 
 #### Locations of observational studies (panel 2A)
-Full <- read.csv("data/Data_Size Across_flow_diagram.csv", header = T)
+Full <- read.csv("data/Data_Size Across_map.csv", header = T)
 Full$SourceID <- as.factor(Full$SourceID); Full$SiteID <- as.factor(Full$SiteID); Full$SampleID <- as.factor(Full$SampleID);
 Full$Hemisphere <- as.factor(Full$Hemisphere); Full$Realms <- as.factor(Full$Realms);
 Full$GeographicalTerritory <- as.factor(Full$GeographicalTerritory); Full$GeographicalTerritory2 <- as.factor(Full$GeographicalTerritory2);
