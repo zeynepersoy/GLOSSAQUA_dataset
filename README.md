@@ -8,7 +8,7 @@ Dataset last updated: 14.02.2024
 
 ## About the project and contact information
 
-If you want to know more about the project, please check the [project's webpage](https://sibecol-across.com/).
+If you want to know more about the project, please check the [project's webpage](https://across.netlify.app/).
 
 Project Co-PIs: 
 
@@ -21,7 +21,7 @@ Project Co-PIs:
 
 ## Repository structure
 
-This repository has the data, graphs and the code to reproduce the figures in the data article called "SizeAcross dataset: a global dataset of size spectra across aquatic ecosystems and trophic levels".
+This repository has the data, graphs and the code to reproduce the figures in the data article called "SizeAcross dataset: a global dataset of size spectra across aquatic ecosystems and taxonomic groups".
 
 
 ## Data structure
