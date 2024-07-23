@@ -1,5 +1,6 @@
 
 ## Set the working directory
+rm(list=ls(all=TRUE))
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 ## Load packages
@@ -16,6 +17,10 @@ library(ghibli)
 Source <- read.table('data/SizeAcross_DataSource.txt', h = "TRUE")
 Sample <- read.table('data/SizeAcross_Sample.txt', h = "TRUE")
 Size <- read.table('data/SizeAcross_Size.txt', h = "TRUE")
+
+## Merge the data
+test <- merge(Source,Sample, by="SourceID") #Concatenating variable: SourceID
+test <- merge(test, Size, by = c("SourceID","SiteID")) #Concatenating variables: SourceID and SiteID
 
 ################################################################################################################
 #
