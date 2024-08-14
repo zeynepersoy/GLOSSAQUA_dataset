@@ -2,7 +2,7 @@
 
 This is the GitHub repository of "GLOSSAQUA: a GLObal dataset of Size Spectra across AQUAtic ecosystems" presented in Ersoy et al. 2024.
 
-The dataset was financially supported by the([Iberian Society of Ecology](https://www.sibecol.org/en/)) Advanced Early Career Researchers Project Grant (ACROSS project).
+The dataset was financially supported by the [Iberian Society of Ecology](https://www.sibecol.org/en/) Advanced Early Career Researchers Project Grant (ACROSS project).
 
 Dataset last updated: 14.08.2024
 
@@ -22,11 +22,11 @@ Project Co-PIs:
 
 ## Repository structure
 
-This repository holds the data files, the figures presented in Ersoy et al. 2024 and the R code used to reproduce them (Figures_GLOSSAQUA dataset.R), and the R code to standardize size spectra parameters (Standardization_GLOSSAQUA dataset.R).
+This repository holds the data files, the figures presented in Ersoy et al. 2024 and the R code used to reproduce them (`Figures_GLOSSAQUA dataset.R`), and the R code to standardize size spectra parameters (`Standardization_GLOSSAQUA dataset.R`).
 
 The data files can be found in the data folder, while the figures can be found in the graphs folder.
 
-The repository uses different packages (e.g., dplyr, maps, scico, ggplot2, cowplot, forcats, gghalves, ghibli) that can all be installed from CRAN using the install.packages(“package name”) code syntax.
+The repository uses different packages (e.g., `dplyr`, `maps`, `scico`, `ggplot2`, `cowplot`, `forcats`, `gghalves`, `ghibli`) that can all be installed from CRAN using the `install.packages(“package name”)` code syntax.
 
 
 ## Data structure
