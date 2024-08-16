@@ -14,9 +14,9 @@ library(gghalves)
 library(ghibli)
 
 ## Load the data
-Source <- read.table('data/SizeAcross_DataSource.txt', h = "TRUE")
-Sample <- read.table('data/SizeAcross_Sample.txt', h = "TRUE")
-Size <- read.table('data/SizeAcross_Size.txt', h = "TRUE")
+Source <- read.table('data/GLOSSAQUA_DataSource.txt', h = "TRUE")
+Sample <- read.table('data/GLOSSAQUA_Sample.txt', h = "TRUE")
+Size <- read.table('data/GLOSSAQUA_Size.txt', h = "TRUE")
 
 ## Merge the data
 test <- merge(Source,Sample, by="SourceID") #Concatenating variable: SourceID
