@@ -1,4 +1,4 @@
-# GLOSSAQUA_dataset <img src="other/logo_across.png" align="right" height="220" width="210" ></a>
+# GLOSSAQUA_dataset
 
 This is the GitHub repository of "GLOSSAQUA: a GLObal dataset of Size Spectra across AQUAtic ecosystems" presented in Ersoy et al. 2024.
 
