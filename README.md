@@ -22,11 +22,21 @@ Project Co-PIs:
 
 ## Repository structure
 
-This repository holds the data files, the figures presented in Ersoy et al. 2024 and the R code used to reproduce them (`Figures_GLOSSAQUA dataset.R`), and the R code to standardize size spectra parameters (`Standardization_GLOSSAQUA dataset.R`).
+This repository holds two folders called "data" and "figures"  presented in Ersoy et al. 2024 and the R code used to reproduce them (`Figures_GLOSSAQUA dataset.R`), and the R code to standardize size spectra parameters (`Standardization_GLOSSAQUA dataset.R`).
 
-The data files can be found in the data folder, while the figures can be found in the graphs folder.
+The data folder holds four tab-delimited TXT files, while the figures can be found in the figures folder.
+
+`GLOSSAQUA_Dictionary.txt`  integrates the description of all variables present in the other TXT files. Each row corresponds to a variable while the columns contain the name of the variable and its description, an example, and the name of the TXT files where this variable can be found
+“GLOSSAQUA_DataSource.txt” represents the article and datasets used to collect size spectra parameters. Each row corresponds to a study while the columns contain the article identification, the abbreviated citation, the peer-reviewed journal, the year of publication and the Digital Object Identifier (DOI).
+
+`GLOSSAQUA_Sample.txt` contains the information of each sample with its projected geographical coordinates in WGS84 (latitude and longitude). Each row corresponds to the sample while columns include the biogeographic realms (using boundaries defined by Olson et al. 2001), the type of ecosystem type, the environmental context, the level of ecological complexity, the organismal group and the sampling method.
+
+`GLOSAQUASizeAcross_Size.txt` compiles information related to the size spectrum methodology and parameters. Each row corresponds to the individual estimates of size spectra parameters, while the columns include the size spectra parameters (i.e., slope, intercept and linearity), body size units, and body size ranges.
 
 The repository uses different packages (e.g., `dplyr`, `maps`, `scico`, `ggplot2`, `cowplot`, `forcats`, `gghalves`, `ghibli`) that can all be installed from CRAN using the `install.packages(“package name”)` code syntax.
+
+`Figures_GLOSSAQUA dataset.R`: This script loads the data files from data folder and merge them to reproduce the figures in the manuscript.
+`Standardization_GLOSSAQUA dataset.R`: This scripts transforms the theoretical values of the size spectrum slopes based on Sprules and Barth 2065 and Guiet et al. 2016.
 
 
 ## Data structure
