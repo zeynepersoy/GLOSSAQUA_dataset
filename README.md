@@ -27,7 +27,8 @@ This repository holds two folders called "data" and "figures"  presented in Erso
 The data folder holds four tab-delimited TXT files, while the figures can be found in the figures folder.
 
 `GLOSSAQUA_Dictionary.txt`  integrates the description of all variables present in the other TXT files. Each row corresponds to a variable while the columns contain the name of the variable and its description, an example, and the name of the TXT files where this variable can be found
-“GLOSSAQUA_DataSource.txt” represents the article and datasets used to collect size spectra parameters. Each row corresponds to a study while the columns contain the article identification, the abbreviated citation, the peer-reviewed journal, the year of publication and the Digital Object Identifier (DOI).
+
+`GLOSSAQUA_DataSource.txt` represents the article and datasets used to collect size spectra parameters. Each row corresponds to a study while the columns contain the article identification, the abbreviated citation, the peer-reviewed journal, the year of publication and the Digital Object Identifier (DOI).
 
 `GLOSSAQUA_Sample.txt` contains the information of each sample with its projected geographical coordinates in WGS84 (latitude and longitude). Each row corresponds to the sample while columns include the biogeographic realms (using boundaries defined by Olson et al. 2001), the type of ecosystem type, the environmental context, the level of ecological complexity, the organismal group and the sampling method.
 
