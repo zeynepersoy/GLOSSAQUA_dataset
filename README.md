@@ -24,6 +24,8 @@ Project Co-PIs:
 
 This repository holds two folders called "data" and "figures"  presented in Ersoy et al. 2024 and the R code used to reproduce them (`Figures_GLOSSAQUA dataset.R`), and the R code to standardize size spectra parameters (`Standardization_GLOSSAQUA dataset.R`).
 
+More details on how to [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository can be find in the linked websites.
+
 `Figures_GLOSSAQUA dataset.R`: This script loads the data files from data folder and merge them to reproduce the figures in the manuscript.
 
 `Standardization_GLOSSAQUA dataset.R`: This scripts transforms the theoretical values of the size spectrum slopes based on Sprules and Barth 2065 and Guiet et al. 2016.
