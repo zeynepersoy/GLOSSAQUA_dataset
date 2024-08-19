@@ -14,13 +14,9 @@ library(gghalves)
 library(ghibli)
 
 ## Load the data
-Source <- read.table('data/GLOSSAQUA_DataSource.txt', h = "TRUE")
-Sample <- read.table('data/GLOSSAQUA_Sample.txt', h = "TRUE")
-Size <- read.table('data/GLOSSAQUA_Size.txt', h = "TRUE")
-
-## Merge the data
-test <- merge(Source,Sample, by="SourceID") #Concatenating variable: SourceID
-test <- merge(test, Size, by = c("SourceID","SiteID")) #Concatenating variables: SourceID and SiteID
+Source <- read.table('data/GLOSSAQUA_DataSource.txt', header = TRUE)
+Sample <- read.table('data/GLOSSAQUA_Sample.txt', header = TRUE)
+Size <- read.table('data/GLOSSAQUA_Size.txt', header = TRUE)
 
 ################################################################################################################
 #
@@ -28,7 +24,7 @@ test <- merge(test, Size, by = c("SourceID","SiteID")) #Concatenating variables:
 #
 ################################################################################################################
 
-#### Locations of observational studies (panel 2A)
+#### Locations of observational studies (panel 1A)
 ## Merge "Size" and "Sample" datasets together
 ## Convert negative Longitude values for Fiji into absolute values (to draw the map)
 Size_Sample.map <- left_join(Sample, Size, by = c("SourceID","SiteID")) %>% 
@@ -38,7 +34,7 @@ Size_Sample.map <- left_join(Sample, Size, by = c("SourceID","SiteID")) %>%
 coord.A <- tibble(SourceID = Size_Sample.map$SourceID, SiteID = Size_Sample.map$SiteID,
                   Ecosystem = Size_Sample.map$Ecosystem,
                   GeographicalTerritory = Size_Sample.map$GeographicalTerritory, GeographicalTerritory2 = Size_Sample.map$GeographicalTerritory2,
-                  Realms = Size_Sample.map$Realms,
+                  Realm = Size_Sample.map$Realm,
                   long = Size_Sample.map$GeographicalLongitude, lat = Size_Sample.map$GeographicalLatitude) 
 
 ## Create a bubble map where the sizes of the bubbles are proportional to the # articles in each Geographical Territory 2 (i.e. countries...)
@@ -50,7 +46,7 @@ Aquatic_avg.coordinates <- Size_Sample.map %>% group_by(GeographicalTerritory2) 
   rename(Lat_avg = GeographicalLatitude, Long_avg = GeographicalLongitude)
 ## Merge the two dataframe
 Aquatic_map <- left_join(Aquatic_count, Aquatic_avg.coordinates, by = "GeographicalTerritory2")
-## Add the "Realms" to the new dataframe (and eliminate duplicates)
+## Add the "Realm" to the new dataframe (and eliminate duplicates)
 Aquatic_map <- merge(x = Aquatic_map, y = coord.A, by = "GeographicalTerritory2", all.x = TRUE) %>%
   group_by(GeographicalTerritory2) %>% 
   filter(rank(GeographicalTerritory2, ties.method = "first") == 1)
@@ -62,8 +58,8 @@ PonyoMedium.2 <- ghibli_palette("PonyoMedium", 8, type = "continuous")
 mybreaks <- c(1, 4, 8, 12, 16)
 Map.Across <- ggplot() +
   geom_polygon(data = world_map, aes(x = long, y = lat, group = group), fill="grey", alpha = 0.5) +
-  #geom_point(data = coord.A, aes(x = long, y = lat, size = 0.3, color = Realms, fill = Realms), shape = 1, alpha = 0.4) +
-  geom_point(data = Aquatic_map, aes(x = Long_avg, y = Lat_avg, size = count, color = Realms, fill = Realms), stroke = 1.5, shape = 21, alpha = 0.6) +
+  #geom_point(data = coord.A, aes(x = long, y = lat, size = 0.3, color = Realm, fill = Realm), shape = 1, alpha = 0.4) +
+  geom_point(data = Aquatic_map, aes(x = Long_avg, y = Lat_avg, size = count, color = Realm, fill = Realm), stroke = 1.5, shape = 21, alpha = 0.6) +
   scale_size_continuous(range = c(2,12), breaks = mybreaks, name = "# articles") +
   scale_fill_manual(values = PonyoMedium.2) +
   scale_colour_manual(values = PonyoMedium.2) +
@@ -81,7 +77,7 @@ Map.Across <- ggplot() +
 
 #### Year of publication (panel 1B)
 ## Merge "Source" and "Sample" datasets together (and eliminate duplicates)
-Source_Sample <- left_join(x = Source, y = Sample, by = "SourceID") %>%
+Source_Sample.Aquatic <- left_join(x = Source, y = Sample, by = "SourceID") %>%
   group_by(SourceID) %>% 
   filter(rank(SourceID, ties.method = "first") == 1)  
 
@@ -138,7 +134,7 @@ Taxonomic.Group <- ggplot(Source_Sample.Aquatic, aes(x = SpeciesType, fill = Eco
         legend.position = "none")
 
 ### Merge panels together
-png(file="./graphs/Fig1.png", width = 10, height = 10, units = 'in', res= 300)
+png(file="./figures/Fig1.png", width = 10, height = 10, units = 'in', res= 300)
 ggdraw() +
   draw_plot(Map.Across, x = 0, y = 0.5, width = 1, height = 0.5) +
   draw_plot(Publication.Year, x = 0, y = 0.08, width = .5, height = .4) +
@@ -176,7 +172,7 @@ SizeSpectrum.Methods <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMetho
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
 
-png(file="./graphs/Fig3.png", width = 5, height = 5, units = 'in', res= 300)
+png(file="./figures/Fig3.png", width = 5, height = 5, units = 'in', res= 300)
 SizeSpectrum.Methods
 dev.off()
 
@@ -216,7 +212,7 @@ Intercept <- ggplot(Size_Sample.Intercept, aes(x = fct_infreq(SizeSpectrumMethod
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
 
-Linearity <- ggplot(Size_Sample.Aquatic, aes(x = fct_infreq(SizeSpectrumMethod), y = Linearity)) +
+Linearity <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Linearity)) +
   geom_boxplot(size = 0.6, width = 0.3, outlier.color = NA) +
   geom_half_point(aes(x = SizeSpectrumMethod), colour = "grey70", side = "r", range_scale = 0.7,  size = 2, shape = 19, alpha = 0.3, position = position_nudge(x = 0.08)) +
   ylab("Size spectrum linearity parameter") +
@@ -229,7 +225,7 @@ Linearity <- ggplot(Size_Sample.Aquatic, aes(x = fct_infreq(SizeSpectrumMethod),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
 
-png(file="./graphs/Fig4.png", width = 12, height = 6, units = 'in', res= 300)
+png(file="./figures/Fig4.png", width = 12, height = 6, units = 'in', res= 300)
 
 plot_grid(Slope, Intercept, Linearity, labels = "AUTO", ncol=3, label_size = 12)
 
