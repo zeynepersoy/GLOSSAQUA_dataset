@@ -38,7 +38,7 @@ The data folder holds four tab-delimited TXT files, while the figures can be fou
 
 `GLOSSAQUA_DataSource.txt` represents the article and datasets used to collect size spectra parameters. Each row corresponds to a study while the columns contain the article identification, the abbreviated citation, the peer-reviewed journal, the year of publication and the Digital Object Identifier (DOI).
 
-`GLOSSAQUA_Sample.txt` contains the information of each sample with its projected geographical coordinates in WGS84 (latitude and longitude). Each row corresponds to the sample while columns include the biogeographic realms (using boundaries defined by Olson et al. 2001), the type of ecosystem type, the environmental context, the level of ecological complexity, the organismal group and the sampling method.
+`GLOSSAQUA_Sample.txt` contains the information of each sample with its projected geographical coordinates in WGS84 (latitude and longitude). Each row corresponds to the sample while columns include the biogeographic realms, the type of ecosystem type, the environmental context, the level of ecological complexity, the organismal group and the sampling method.
 
 `GLOSAQUA_Size.txt` compiles information related to the size spectrum methodology and parameters. Each row corresponds to the individual estimates of size spectra parameters, while the columns include the size spectra parameters (i.e., slope, intercept and linearity), body size units, and body size ranges.
 
