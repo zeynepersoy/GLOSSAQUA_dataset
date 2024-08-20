@@ -28,7 +28,7 @@ More details on how to [clone](https://docs.github.com/en/repositories/creating-
 
 `Figures_GLOSSAQUA dataset.R`: This script loads the data files from data folder and merge them to reproduce the figures in the manuscript.
 
-`Standardization_GLOSSAQUA dataset.R`: This scripts transforms the theoretical values of the size spectrum slopes based on [Sprules and Barth 2016](https://cdnsciencepub.com/doi/abs/10.1139/cjfas-2015-0115) and [Guiet et al. 2016] (https://www.sciencedirect.com/science/article/abs/pii/S0304380016301958).
+`Standardization_GLOSSAQUA dataset.R`: This scripts transforms the theoretical values of the size spectrum slopes based on [Sprules and Barth 2016](https://cdnsciencepub.com/doi/abs/10.1139/cjfas-2015-0115) and [Guiet et al. 2016](https://www.sciencedirect.com/science/article/abs/pii/S0304380016301958).
 
 The repository uses different packages (e.g., `dplyr`, `maps`, `scico`, `ggplot2`, `cowplot`, `forcats`, `gghalves`, `ghibli`) that can all be installed from CRAN using the `install.packages(“package name”)` code syntax.
 
