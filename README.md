@@ -28,7 +28,7 @@ More details on how to [clone](https://docs.github.com/en/repositories/creating-
 
 `Figures_GLOSSAQUA dataset.R`: This script loads the data files from data folder and merge them to reproduce the figures in the manuscript.
 
-`Standardization_GLOSSAQUA dataset.R`: This scripts transforms the theoretical values of the size spectrum slopes based on Sprules and Barth 2065 and Guiet et al. 2016.
+`Standardization_GLOSSAQUA dataset.R`: This scripts transforms the theoretical values of the size spectrum slopes based on [Sprules and Barth 2016](https://cdnsciencepub.com/doi/abs/10.1139/cjfas-2015-0115) and [Guiet et al. 2016] (https://www.sciencedirect.com/science/article/abs/pii/S0304380016301958).
 
 The repository uses different packages (e.g., `dplyr`, `maps`, `scico`, `ggplot2`, `cowplot`, `forcats`, `gghalves`, `ghibli`) that can all be installed from CRAN using the `install.packages(“package name”)` code syntax.
 
@@ -49,7 +49,7 @@ GLOSSSAQUA compiles a comprehensive collection of size spectra parameters (i.e. 
 
 To be included in the GLOSSAQUA dataset, all studies had to meet the following criteria: (1) to be field-based studies and hence, experimental (including in situ experiments) or theoretical studies were excluded; (2) to involve animal communities and hence, primary producers were excluded unless they were part of a food web (e.g., phytoplankton-zooplankton-fish); and (3) to be studies based on individual body size measurements without relying on mean or maximum body size per species.
 
-For studies derived from the literature review, we extracted size spectrum parameters (e.g., slope, intercept and linearity) directly from tables or by digitizing information from plots using WebPlotDigitizer software v.3.4 (Rohatgi 2020). For studies derived from the online survey (i.e., individual body size datasets), we calculated size spectra parameters following the fitting recommendation provided by Sprules (2022). 
+For studies derived from the literature review, we extracted size spectrum parameters (e.g., slope, intercept and linearity) directly from tables or by digitizing information from plots using WebPlotDigitizer software v.3.4 (Rohatgi 2020). For studies derived from the online survey (i.e., individual body size datasets), we calculated size spectra parameters following the fitting recommendation provided by [Sprules (2022)](https://www.sciencedirect.com/science/article/abs/pii/B9780128191668000244?via%3Dihub). 
 
 For all studies, we also extracted additional information related to geographic location, ecosystem type, taxonomic groups, sampling method and period (mainly month), size spectrum method, number of size classes and minimum and maximum size classes. 
  

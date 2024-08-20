@@ -1,6 +1,6 @@
 ###########################################################
 #                                                         #
-#               Size spectrum transformation              #
+#               Standardized size spectrum parameters     #
 #                                                         #
 ###########################################################
 
@@ -13,7 +13,7 @@ Sample <- read.table('data/GLOSSAQUA_Sample.txt', header = TRUE)
 Size <- read.table('data/GLOSSAQUA_Size.txt', header = TRUE)
 
 
-#### Size spectrum methods 
+#### Standardization of the slope according to the different size spectra methods 
 ## Merge "Size" and "Sample" datasets together (BUT DO NOT remove duplicates)
 ## Transform "SizeSpectrumMethod" variable into a factor
 ## Rename the levels of "SizeSpectrumMethod"
