@@ -27,19 +27,19 @@ Size <- read.table('data/GLOSSAQUA_Size.txt', header = TRUE)
 #### Locations of observational studies (panel 1A)
 ## Merge "Size" and "Sample" datasets together
 ## Convert negative Longitude values for Fiji into absolute values (to draw the map)
-Size_Sample.map <- left_join(Sample, Size, by = c("SourceID","SiteID")) %>% 
+Size_Sample.map <- left_join(Sample, Size, by = c("StudyID","SiteID")) %>% 
   mutate(across(GeographicalLongitude, ~ifelse(GeographicalTerritory2=='Fiji', abs(.x), .x)))
 
 ## Create a new df with relevant information
-coord.A <- tibble(SourceID = Size_Sample.map$SourceID, SiteID = Size_Sample.map$SiteID,
-                  Ecosystem = Size_Sample.map$Ecosystem,
+coord.A <- tibble(StudyID = Size_Sample.map$StudyID, SiteID = Size_Sample.map$SiteID,
+                  Habitat = Size_Sample.map$Habitat,
                   GeographicalTerritory = Size_Sample.map$GeographicalTerritory, GeographicalTerritory2 = Size_Sample.map$GeographicalTerritory2,
                   Realm = Size_Sample.map$Realm,
                   long = Size_Sample.map$GeographicalLongitude, lat = Size_Sample.map$GeographicalLatitude) 
 
 ## Create a bubble map where the sizes of the bubbles are proportional to the # articles in each Geographical Territory 2 (i.e. countries...)
 ## Calculate the number of studies per Geographical Territory 2
-Aquatic_count <- Size_Sample.map %>% group_by(GeographicalTerritory2) %>% summarise(count = n_distinct(SourceID))  
+Aquatic_count <- Size_Sample.map %>% group_by(GeographicalTerritory2) %>% summarise(count = n_distinct(StudyID))  
 ## Calculate the mean coordinate per Geographical Territory 2
 Aquatic_avg.coordinates <- Size_Sample.map %>% group_by(GeographicalTerritory2) %>% 
   summarise(across(GeographicalLatitude:GeographicalLongitude, ~mean(.x, na.rm = TRUE))) %>% 
@@ -77,11 +77,11 @@ Map.Across <- ggplot() +
 
 #### Year of publication (panel 1B)
 ## Merge "Source" and "Sample" datasets together (and eliminate duplicates)
-Source_Sample.Aquatic <- left_join(x = Source, y = Sample, by = "SourceID") %>%
-  group_by(SourceID) %>% 
-  filter(rank(SourceID, ties.method = "first") == 1)  
+Source_Sample.Aquatic <- left_join(x = Source, y = Sample, by = "StudyID") %>%
+  group_by(StudyID) %>% 
+  filter(rank(StudyID, ties.method = "first") == 1)  
 
-Publication.Year <- ggplot(Source_Sample.Aquatic, aes(x = PublicationYear, fill = Ecosystem)) +
+Publication.Year <- ggplot(Source_Sample.Aquatic, aes(x = PublicationYear, fill = Habitat)) +
   geom_histogram(alpha = .8, color = "#e9ecef") +
   #scale_colour_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
   scale_fill_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
@@ -118,7 +118,7 @@ Source_Sample.Aquatic <- Source_Sample.Aquatic %>%
 Source_Sample.Aquatic$SpeciesType <- ordered(Source_Sample.Aquatic$SpeciesType, 
                                              levels = c("Fish", "Zooplankton", "Macroinvertebrate", "Macroinvertebrate+Fish", "Zooplankton+Macroinvertebrate", "Zooplankton+Fish", "Others"))
 
-Taxonomic.Group <- ggplot(Source_Sample.Aquatic, aes(x = SpeciesType, fill = Ecosystem)) +
+Taxonomic.Group <- ggplot(Source_Sample.Aquatic, aes(x = SpeciesType, fill = Habitat)) +
   geom_histogram(stat = "count", alpha = .8, color = "#e9ecef") +
   #scale_colour_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
   scale_fill_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
@@ -153,11 +153,11 @@ dev.off()
 ## Merge "Size" and "Sample" datasets together (BUT DO NOT remove duplicates)
 ## Transform "SizeSpectrumMethod" variable into a factor
 ## Rename the levels of "SizeSpectrumMethod"
-Size_Sample <- full_join(Sample, Size, by = c("SourceID", "SiteID")) %>%
+Size_Sample <- full_join(Sample, Size, by = c("StudyID", "SiteID")) %>%
   mutate(SizeSpectrumMethod = as.factor(SizeSpectrumMethod)) %>% 
   mutate(SizeSpectrumMethod  = factor(SizeSpectrumMethod, labels = c("ASS", "BSS", "MLE", "NASS", "NBSS", "Pareto")))
 
-SizeSpectrum.Methods <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod),  fill = Ecosystem)) +
+SizeSpectrum.Methods <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod),  fill = Habitat)) +
   geom_bar(alpha = .8, color = "#e9ecef") +
   scale_fill_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
   ylab("Occurence") +

@@ -17,7 +17,7 @@ Size <- read.table('data/GLOSSAQUA_Size.txt', header = TRUE)
 ## Merge "Size" and "Sample" datasets together (BUT DO NOT remove duplicates)
 ## Transform "SizeSpectrumMethod" variable into a factor
 ## Rename the levels of "SizeSpectrumMethod"
-Size_Sample <- full_join(Sample, Size, by = c("SourceID", "SiteID")) %>%
+Size_Sample <- full_join(Sample, Size, by = c("StudyID", "SiteID")) %>%
   mutate(SizeSpectrumMethod = as.factor(SizeSpectrumMethod)) %>% 
   mutate(SizeSpectrumMethod  = factor(SizeSpectrumMethod, labels = c("ASS", "BSS", "MLE", "NASS", "NBSS", "Pareto")))
 
@@ -43,5 +43,26 @@ for (i in 1:length){
     Size_Sample$Slope_mod[count] <- as.numeric(site$Slope)
   } 
   count <- count + 1
+  print(i)
+}
+
+
+#### Standardization of the intercept according to the different size spectra methods 
+# Add a new column called "Intercept_mod" to store the modified slope values
+Size_Sample$Intercept_mod <- NA
+Method <- unique(Size_Sample$SizeSpectrumMethod)
+length <- length(Method)
+
+#Loop to standardize the size spectrum intercepts in each size spectrum method:
+count <- 1
+for (i in 1:length){
+  site <- Size_Sample[which(Size_Sample$SizeSpectrumMethod == Method[count]),]
+  if(length(which(is.na(site$Intercept))) == dim(site)[1] ){
+    print(i)
+    next
+  }
+  values <- scale(site$Intercept)
+  Size_Sample$Intercept_mod[which(Size_Sample$SizeSpectrumMethod == Method[count])] <- round(values,3)
+  count <- count + 1  
   print(i)
 }
