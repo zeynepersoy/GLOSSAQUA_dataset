@@ -25,7 +25,7 @@ Size_Sample <- full_join(Sample, Size, by = c("SourceID", "SiteID")) %>%
 Size_Sample<- Size_Sample
 # Add a new column called "Slope_mod" to store the modified slope values
 Size_Sample$Slope_mod <- NA
-length <- dim(DATA)[1]
+length <- dim(Size_Sample)[1]
 count <- 1
 for (i in 1:length){
   site <- Size_Sample[count,]
