@@ -118,20 +118,27 @@ Source_Sample.Aquatic <- Source_Sample.Aquatic %>%
 Source_Sample.Aquatic$SpeciesType <- ordered(Source_Sample.Aquatic$SpeciesType, 
                                              levels = c("Fish", "Zooplankton", "Macroinvertebrate", "Macroinvertebrate+Fish", "Zooplankton+Macroinvertebrate", "Zooplankton+Fish", "Others"))
 
-Taxonomic.Group <- ggplot(Source_Sample.Aquatic, aes(x = SpeciesType, fill = Habitat)) +
-  geom_histogram(stat = "count", alpha = .8, color = "#e9ecef") +
-  #scale_colour_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
+
+## Create a new frequency table
+freq_table <- Source_Sample.Aquatic %>%
+  group_by(SpeciesType, Habitat) %>%
+  summarise(frequency = n()) %>%
+  arrange(desc(frequency))
+
+Taxonomic.Group <- ggplot(freq_table, aes(x = SpeciesType, y = frequency, fill = Habitat)) +
+  geom_bar(stat = "identity", alpha = .8, color = "#e9ecef") +
   scale_fill_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
   ylab("Number of studies") +
   theme_linedraw() +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.ticks.x = element_line(color = "black"),
-        axis.text.x = element_text(color = "black", size = 12, angle = 40, vjust = 1, hjust = 1),
+        axis.text.x = element_text(color = "black", size = 11, angle = 40, vjust = 1, hjust = 1),
         axis.title.x = element_blank(),
-        axis.text.y = element_text(color = "black", size = 12),
-        axis.title.y = element_text(color = "black", size = 12),
+        axis.text.y = element_text(color = "black", size = 11),
+        axis.title.y = element_text(color = "black", size = 11),
         legend.position = "none")
+
 
 ### Merge panels together
 png(file="./figures/Fig1.png", width = 10, height = 10, units = 'in', res= 300)
