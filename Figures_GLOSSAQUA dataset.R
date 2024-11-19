@@ -139,7 +139,7 @@ Taxonomic.Group <- ggplot(freq_table, aes(x = SpeciesType, y = frequency, fill =
 
 
 ### Merge panels together
-png(file="./figures/Fig1.png", width = 10, height = 10, units = 'in', res= 300)
+png(file="./figures/Figure_1.png", width = 10, height = 10, units = 'in', res= 300)
 ggdraw() +
   draw_plot(Map.Across, x = 0, y = 0.5, width = 1, height = 0.5) +
   draw_plot(Publication.Year, x = 0, y = 0.08, width = .5, height = .4) +
@@ -177,7 +177,7 @@ SizeSpectrum.Methods <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMetho
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
 
-png(file="./figures/Fig3.png", width = 5, height = 5, units = 'in', res= 300)
+png(file="./figures/Figure_3.png", width = 5, height = 5, units = 'in', res= 300)
 SizeSpectrum.Methods
 dev.off()
 
@@ -230,7 +230,7 @@ Linearity <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Lin
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
 
-png(file="./figures/Fig4.png", width = 12, height = 6, units = 'in', res= 300)
+png(file="./figures/Figure_4.png", width = 12, height = 6, units = 'in', res= 300)
 
 plot_grid(Slope, Intercept, Linearity, labels = "AUTO", ncol=3, label_size = 12)
 
