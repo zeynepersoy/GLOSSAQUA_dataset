@@ -139,15 +139,14 @@ Taxonomic.Group <- ggplot(freq_table, aes(x = SpeciesType, y = frequency, fill =
 
 
 ### Merge panels together
-png(file="./figures/Figure_1.png", width = 10, height = 10, units = 'in', res= 300)
 ggdraw() +
   draw_plot(Map.Across, x = 0, y = 0.5, width = 1, height = 0.5) +
   draw_plot(Publication.Year, x = 0, y = 0.08, width = .5, height = .4) +
   draw_plot(Taxonomic.Group, x = .5, y = 0.0, width = .5, height = .48) +
   draw_plot_label(label = c("(A)", "(B)", "(C)"), size = 15,
                   x = c(0, 0, 0.5), y = c(1, 0.5, 0.5))
+ggsave(here("figures", "Figure 1.jpg"), width = 10, height = 10, units = 'in', dpi= 300)
 
-dev.off()
 
 ################################################################################################################
 #
@@ -177,17 +176,15 @@ SizeSpectrum.Methods <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMetho
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
 
-png(file="./figures/Figure_3.png", width = 5, height = 5, units = 'in', res= 300)
-SizeSpectrum.Methods
-dev.off()
-
+ggsave(here("figures", "Figure 3.jpg"), width = 5, height = 5, units = 'in', dpi= 300)
 
 ################################################################################################################
 #
 # FIGURE 4
+#this code only reproduces the lower panel of Figure 4
 #
 ################################################################################################################
-#### Size spectrum parameters distribution (lower panels)
+#### Size spectrum parameters distribution (lower panel of Figure 4)
 Slope <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Slope)) +
   geom_boxplot(size = 0.6, width = 0.3, outlier.color = NA) +
   geom_half_point(aes(x = SizeSpectrumMethod), colour = "grey70", side = "r", range_scale = 0.7,  size = 2, shape = 19, alpha = 0.3, position = position_nudge(x = 0.08)) +
@@ -230,10 +227,7 @@ Linearity <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Lin
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
 
-png(file="./figures/Figure_4.png", width = 12, height = 6, units = 'in', res= 300)
+ggsave(here("figures", "Figure 4_LowerPanel.jpg"), width = 12, height = 6, units = 'in', dpi= 300)
 
-plot_grid(Slope, Intercept, Linearity, labels = "AUTO", ncol=3, label_size = 12)
-
-dev.off()
 
 #### END OF THE CODE
