@@ -1,9 +1,7 @@
 
-## Set the working directory
-rm(list=ls(all=TRUE))
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 ## Load packages
+library(here)
 library(dplyr) 
 library(maps)
 library(scico)
@@ -14,9 +12,9 @@ library(gghalves)
 library(ghibli)
 
 ## Load the data
-Source <- read.table('data/GLOSSAQUA_DataSource.txt', header = TRUE)
-Sample <- read.table('data/GLOSSAQUA_Sample.txt', header = TRUE)
-Size <- read.table('data/GLOSSAQUA_Size.txt', header = TRUE)
+Source <- read.table(here("data", "GLOSSAQUA_DataSource.txt"), header = TRUE)
+Sample <- read.table(here("data", "GLOSSAQUA_Sample.txt"), header = TRUE)
+Size <- read.table(here("data", "GLOSSAQUA_Size.txt"), header = TRUE)
 
 ################################################################################################################
 #

@@ -4,13 +4,14 @@
 #                                                         #
 ###########################################################
 
-## Set the working directory
-rm(list=ls(all=TRUE))
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+# Load packages
+library(here)
+
 
 ## Load the data
-Sample <- read.table('data/GLOSSAQUA_Sample.txt', header = TRUE)
-Size <- read.table('data/GLOSSAQUA_Size.txt', header = TRUE)
+Sample <- read.table(here("data", "GLOSSAQUA_Sample.txt"), header = TRUE)
+Size <- read.table(here("data", "GLOSSAQUA_Size.txt"), header = TRUE)
 
 
 #### Standardization of the slope according to the different size spectra methods 
@@ -46,23 +47,3 @@ for (i in 1:length){
   print(i)
 }
 
-
-#### Standardization of the intercept according to the different size spectra methods 
-# Add a new column called "Intercept_mod" to store the modified slope values
-Size_Sample$Intercept_mod <- NA
-Method <- unique(Size_Sample$SizeSpectrumMethod)
-length <- length(Method)
-
-#Loop to standardize the size spectrum intercepts in each size spectrum method:
-count <- 1
-for (i in 1:length){
-  site <- Size_Sample[which(Size_Sample$SizeSpectrumMethod == Method[count]),]
-  if(length(which(is.na(site$Intercept))) == dim(site)[1] ){
-    print(i)
-    next
-  }
-  values <- scale(site$Intercept)
-  Size_Sample$Intercept_mod[which(Size_Sample$SizeSpectrumMethod == Method[count])] <- round(values,3)
-  count <- count + 1  
-  print(i)
-}
