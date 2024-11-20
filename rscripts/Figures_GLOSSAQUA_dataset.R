@@ -11,7 +11,11 @@ library(forcats)
 library(gghalves)
 library(ghibli)
 
-## Load the data
+if (!file.exists(here("data", "GLOSSAQUA_DataSource.txt"))) {
+  print("Cannot find the data files! Please run the script from the root of the repository!")
+  q();
+}
+  
 Source <- read.table(here("data", "GLOSSAQUA_DataSource.txt"), header = TRUE)
 Sample <- read.table(here("data", "GLOSSAQUA_Sample.txt"), header = TRUE)
 Size <- read.table(here("data", "GLOSSAQUA_Size.txt"), header = TRUE)
