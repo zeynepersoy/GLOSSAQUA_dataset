@@ -1,5 +1,3 @@
-
-
 ## Load packages
 library(here)
 library(dplyr) 
@@ -11,10 +9,6 @@ library(forcats)
 library(gghalves)
 library(ghibli)
 
-if (!file.exists(here("data", "GLOSSAQUA_DataSource.txt"))) {
-  print("Cannot find the data files! Please run the script from the root of the repository!")
-  q();
-}
   
 Source <- read.table(here("data", "GLOSSAQUA_DataSource.txt"), header = TRUE)
 Sample <- read.table(here("data", "GLOSSAQUA_Sample.txt"), header = TRUE)
@@ -62,7 +56,7 @@ Map.Across <- ggplot() +
   geom_polygon(data = world_map, aes(x = long, y = lat, group = group), fill="grey", alpha = 0.5) +
   #geom_point(data = coord.A, aes(x = long, y = lat, size = 0.3, color = Realm, fill = Realm), shape = 1, alpha = 0.4) +
   geom_point(data = Aquatic_map, aes(x = Long_avg, y = Lat_avg, size = count, color = Realm, fill = Realm), stroke = 1.5, shape = 21, alpha = 0.6) +
-  scale_size_continuous(range = c(2,12), breaks = mybreaks, name = "# articles") +
+  scale_size_continuous(range = c(2,12), breaks = mybreaks, name = "# studies") +
   scale_fill_manual(values = PonyoMedium.2) +
   scale_colour_manual(values = PonyoMedium.2) +
   ylab("Latitude") +
@@ -81,12 +75,12 @@ Map.Across <- ggplot() +
 ## Merge "Source" and "Sample" datasets together (and eliminate duplicates)
 Source_Sample.Aquatic <- left_join(x = Source, y = Sample, by = "StudyID") %>%
   group_by(StudyID) %>% 
-  filter(rank(StudyID, ties.method = "first") == 1)  
+  filter(rank(StudyID, ties.method = "first") == 1)
+
 
 Publication.Year <- ggplot(Source_Sample.Aquatic, aes(x = PublicationYear, fill = Habitat)) +
   geom_histogram(alpha = .8, color = "#e9ecef") +
-  #scale_colour_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
-  scale_fill_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
+  scale_fill_manual(values = c("Brackish"= "#66a61e", "Freshwater"="#17becf", "Marine"="#9467bd"), name=NULL) +
   coord_cartesian(xlim = c(1990, 2024)) +
   scale_x_continuous(breaks = c(1990, 1994, 1998, 2002, 2006, 2010, 2014, 2018, 2022, 2024)) +
   xlab("Year of publication") +
@@ -98,8 +92,8 @@ Publication.Year <- ggplot(Source_Sample.Aquatic, aes(x = PublicationYear, fill 
         axis.text.x = element_text(color = "black", size = 12, angle = 40, vjust = 1, hjust = 1),
         axis.title.x = element_text(color = "black", size = 12),
         axis.text.y = element_text(color = "black", size = 12),
-        axis.title.y = element_text(color = "black", size = 12),
-        legend.position = "none")
+        axis.title.y = element_text(color = "black", size = 12), 
+        legend.position = c(0.2, 0.8))
 
 #### Taxonomic group (panel 1C)
 ## Rename categories within "SpeciesType"
@@ -149,7 +143,6 @@ ggdraw() +
   draw_plot(Taxonomic.Group, x = .5, y = 0.0, width = .5, height = .48) +
   draw_plot_label(label = c("(A)", "(B)", "(C)"), size = 15,
                   x = c(0, 0, 0.5), y = c(1, 0.5, 0.5))
-ggsave(here("figures", "Figure 1.jpg"), width = 10, height = 10, units = 'in', dpi= 300)
 
 
 ################################################################################################################
@@ -167,7 +160,7 @@ Size_Sample <- full_join(Sample, Size, by = c("StudyID", "SiteID")) %>%
 
 SizeSpectrum.Methods <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod),  fill = Habitat)) +
   geom_bar(alpha = .8, color = "#e9ecef") +
-  scale_fill_manual(values = c("#66a61e", "#17becf", "#9467bd")) +
+  scale_fill_manual(values = c("Brackish"= "#66a61e", "Freshwater"="#17becf", "Marine"="#9467bd"), name=NULL) +
   ylab("Occurence") +
   coord_cartesian(ylim = c(0, 3000)) +
   theme_linedraw() +
@@ -178,9 +171,8 @@ SizeSpectrum.Methods <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMetho
         axis.title.x = element_blank(),
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
-        legend.position = "none")
-
-ggsave(here("figures", "Figure 3.jpg"), width = 5, height = 5, units = 'in', dpi= 300)
+        legend.position = c(0.8, 0.8))
+print(SizeSpectrum.Methods)
 
 ################################################################################################################
 #
@@ -201,6 +193,7 @@ Slope <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Slope))
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
+print(Slope)
 
 ## Remove the factor level "MLE" because there is no intercept values
 Size_Sample.Intercept <- Size_Sample %>% 
@@ -217,6 +210,7 @@ Intercept <- ggplot(Size_Sample.Intercept, aes(x = fct_infreq(SizeSpectrumMethod
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
+print(Size_Sample.Intercept)
 
 Linearity <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Linearity)) +
   geom_boxplot(size = 0.6, width = 0.3, outlier.color = NA) +
@@ -230,8 +224,7 @@ Linearity <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Lin
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
-
-ggsave(here("figures", "Figure 4_LowerPanel.jpg"), width = 12, height = 6, units = 'in', dpi= 300)
+print(Linearity)
 
 
 #### END OF THE CODE
