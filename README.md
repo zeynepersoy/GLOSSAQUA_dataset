@@ -22,7 +22,9 @@ Project Co-PIs:
 
 ## Repository structure
 
-To download and explore the dataset, download or clone the repository. Then, open GLOSSAQUA_dataset.Rproj` Project file to start a fresh RStudio, with the working directory and file browser pointed at the project folder.
+To download and explore the dataset, download or clone the repository. Then, open `GLOSSAQUA_dataset.Rproj` Project file to start a fresh RStudio, with the working directory and file browser pointed at the project folder.
+
+If you want to use any other environment other than RStudio, please make sure to change your working directory to the location fo this folder.
 
 The repository uses different packages (e.g., `here`,`dplyr`, `maps`, `scico`, `ggplot2`, `cowplot`, `forcats`, `gghalves`, `ghibli`) that can all be installed from CRAN using the `install.packages(“package name”)` code syntax.
 
