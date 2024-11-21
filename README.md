@@ -44,7 +44,7 @@ In the 📁 data/, you can find the following TXT files:
 
 `GLOSSAQUA_Sample.txt` contains the information of each sample with its projected geographical coordinates in WGS84 (latitude and longitude). Each row corresponds to the sample while columns include the biogeographic realms, the type of ecosystem type, the environmental context, the level of ecological complexity, the organismal group and the sampling method.
 
-`GLOSAQUA_Size.txt` compiles information related to the size spectrum methodology and parameters. Each row corresponds to the individual estimates of size spectrum parameters, while the columns include the size spectrum parameters (i.e., slope, intercept and linearity), body size units, and body size ranges.
+`GLOSSAQUA_Size.txt` compiles information related to the size spectrum methodology and parameters. Each row corresponds to the individual estimates of size spectrum parameters, while the columns include the size spectrum parameters (i.e., slope, intercept and linearity), body size units, and body size ranges.
 
 In the 📁 rscripts/, you can find the following R codes:
 
@@ -55,7 +55,7 @@ In the 📁 rscripts/, you can find the following R codes:
 
 ## Data structure
 
-GLOSSSAQUA compiles a comprehensive collection of size spectrum parameters (i.e. slope, intercept and linearity) across aquatic ecosystems and trophic levels. Data were acquired from two different sources: a classic literature review and an online survey.
+GLOSSAQUA compiles a comprehensive collection of size spectrum parameters (i.e. slope, intercept and linearity) across aquatic ecosystems and trophic levels. Data were acquired from two different sources: a classic literature review and an online survey.
 
 To be included in the GLOSSAQUA dataset, all studies had to meet the following criteria: (1) to be field-based studies and hence, experimental (including in situ experiments) or theoretical studies were excluded; (2) to involve animal communities and hence, primary producers were excluded unless they were included as part of a food web (e.g., phytoplankton-zooplankton-fish); and (3) to be studies based on individual body size measurements without relying on mean or maximum body size per species.
 
