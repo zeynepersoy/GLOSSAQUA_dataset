@@ -162,13 +162,14 @@ SizeSpectrum.Methods <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMetho
   geom_bar(alpha = .8, color = "#e9ecef") +
   scale_fill_manual(values = c("Brackish"= "#66a61e", "Freshwater"="#17becf", "Marine"="#9467bd"), name=NULL) +
   ylab("Occurence") +
+  xlab("Size spectrum methods") +
   coord_cartesian(ylim = c(0, 3000)) +
   theme_linedraw() +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.ticks.x = element_line(color = "black"),
         axis.text.x = element_text(color = "black", size = 12),
-        axis.title.x = element_blank(),
+        axis.title.x = element_text(color = "black", size = 12),
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = c(0.8, 0.8))
@@ -189,7 +190,7 @@ Slope <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Slope))
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.text.x = element_text(color = "black", size = 12),
-        axis.title.x = element_blank(),
+        axis.title.x = element_text(color = "black", size = 12),
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
@@ -202,25 +203,27 @@ Intercept <- ggplot(Size_Sample.Intercept, aes(x = fct_infreq(SizeSpectrumMethod
   geom_boxplot(size = 0.6, width = 0.3, outlier.color = NA) +
   geom_half_point(aes(x = SizeSpectrumMethod), colour = "grey70", side = "r", range_scale = 0.7,  size = 2, shape = 19, alpha = 0.3, position = position_nudge(x = 0.08)) +
   ylab("Size spectrum intercept parameter") +
+  xlab("Size spectrum methods") +
   theme_linedraw() +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.text.x = element_text(color = "black", size = 12),
-        axis.title.x = element_blank(),
+        axis.title.x = element_text(color = "black", size = 12),
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
-print(Size_Sample.Intercept)
+print(Intercept)
 
 Linearity <- ggplot(Size_Sample, aes(x = fct_infreq(SizeSpectrumMethod), y = Linearity)) +
   geom_boxplot(size = 0.6, width = 0.3, outlier.color = NA) +
   geom_half_point(aes(x = SizeSpectrumMethod), colour = "grey70", side = "r", range_scale = 0.7,  size = 2, shape = 19, alpha = 0.3, position = position_nudge(x = 0.08)) +
   ylab("Size spectrum linearity parameter") +
+  xlab("Size spectrum methods") +
   theme_linedraw() +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.text.x = element_text(color = "black", size = 12),
-        axis.title.x = element_blank(),
+        axis.title.x = element_text(color = "black", size = 12),
         axis.text.y = element_text(color = "black", size = 12),
         axis.title.y = element_text(color = "black", size = 12),
         legend.position = "none")
