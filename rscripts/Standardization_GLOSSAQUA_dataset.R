@@ -7,10 +7,10 @@
 
 # Load packages
 library(here)
-
+library(dplyr)
 
 ## Load the data
-Sample <- read.table(here("data", "GLOSSAQUA_Sample.txt"), sep="\n", header = TRUE)
+Sample <- read.table(here("data", "GLOSSAQUA_Sample.txt"), sep="\t", header = TRUE)
 Size <- read.table(here("data", "GLOSSAQUA_Size.txt"), header = TRUE)
 
 
