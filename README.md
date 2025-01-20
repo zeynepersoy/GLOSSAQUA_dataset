@@ -1,10 +1,10 @@
 # GLOSSAQUA_dataset
 
-This is the GitHub repository of "GLOSSAQUA: a GLObal dataset of Size Spectra across AQUAtic ecosystems" presented in Ersoy et al. 2024.
+This is the GitHub repository of "GLOSSAQUA: a GLObal dataset of Size Spectra across AQUAtic ecosystems" presented in Ersoy et al. 2025.
 
 The dataset was financially supported by the [Iberian Society of Ecology](https://www.sibecol.org/en/) Advanced Early Career Researchers Project Grant (ACROSS project).
 
-Dataset last updated: 18.11.2024
+Dataset last updated: 13.12.2024
 
 
 ## About the project and contact information
