@@ -6,6 +6,7 @@ The dataset was financially supported by the [Iberian Society of Ecology](https:
 
 Dataset last updated: 13.12.2024
 
+Data DOI: https://zenodo.org/badge/latestdoi/412396343
 
 ## About the project and contact information
 
